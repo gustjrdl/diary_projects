@@ -1,120 +1,68 @@
-import React, { useState, useRef, useEffect } from "react";
-import diaryInsert from "./components/diaryInsert";
-import diaryTemplate from "./components/diaryTemplate";
-import diaryList from "./components/diaryList";
-import diaryEdit from "./components/diaryEdit";
+import React, { useRef, useState } from "react";
+import TodoEdit from "./components/TodoEdit";
+import TodoInsert from "./components/TodoInsert";
+import TodoList from "./components/TodoList";
+import TodoTemplate from "./components/TodoTemplate";
 
 function App() {
-  const [diarys, setdiarys] = useState([]);
-  const [selectedDiary, setSelectedDiary] = useState(null);
+  const [articles, setArticles] = useState([]);
   const [insertToggle, setInsertToggle] = useState(false);
-  const [editToggle, seteditToggle] = useState(false);
-
-  const onToggle = async (id) => {
-    try {
-      await axios({
-        url: `http://localhost:4000/diarys/check/${id}`,
-        method: "PATCH",
-      });
-      setdiarys((diarys) =>
-        diarys.map((diary) =>
-          diary.id === id ? { ...diary, checked: !diary.checked } : diary
-        )
-      );
-    } catch (e) {
-      setError(e);
-    }
-  };
-
+  const [selectedArticle, setSelectedArticle] = useState(null);
   const nextId = useRef(1);
 
-  const onInsertToggle = () => {
+  const onInsert = (text) => { //입력함수
+    const article = {
+      id: nextId.current,
+      text: text,
+    //   checked: false,
+    };
+    setArticles((articles) => articles.concat(article));
+    nextId.current++;
+  };
+
+  const onInsertToggle = () => { //수정 시 뜨는 팝업창
     setInsertToggle((prev) => !prev);
   };
 
-  const onChangeSelectedDiary = (diary) => {
-    setSelectedDiary((selectedDiary) => diary);
+//   const onToggle = (id) => { 클릭하면 checked 값이 !반전되는 함수
+//     setArticles((articles) =>
+//       articles.map((todo) =>
+//         todo.id === id ? { ...todo, checked: !todo.checked } : todo
+//       )
+//     );
+//   };
+
+  const onUpdate = (id, text) => { //수정 함수
+    setArticles((articles) =>
+      articles.map((article) => (article.id === id ? { ...article, text } : article)) // 들어온 값이 맞으면 왼쪽 처리, 아니면 오른쪽 처리
+    );
+    onInsertToggle(); //수정 팝업창 닫아주기
   };
 
-  const onRemove = async (id) => {
-    try {
-      await axios({
-        url: `http://localhost:4000/diarys/${id}`,
-        method: "DELETE",
-      });
-      setdiarys((diarys) => diarys.filter((diary) => diary.id !== id));
-    } catch (e) {
-      setError(e);
-    }
+  const onRemove = (id) => { //삭제 함수
+    setArticles(
+      (articles) => articles.filter((article) => article.id !== id) //id가 다른 아이들만 기존 배열에 남아있다. id가 같은 녀석은 배열에서 빠진다.
+    );
   };
-
-  const onUpdate = async (id, text) => {
-    try {
-      await axios({
-        url: `http://localhost:4000/diarys/${id}`,
-        method: "PATCH",
-        data: { text, perform_date: "2022-08-04 12:12:12" },
-      });
-      setdiarys((diarys) =>
-        diarys.map((diary) => (diary.id === id ? { ...diary, text } : diary))
-      );
-      onInsertToggle();
-    } catch (e) {
-      setError(e);
-    }
-  };
-
-  const onInsert = async (text) => {
-    try {
-      const data = await axios({
-        url: "http://localhost:4000/diarys",
-        method: "POST",
-        data: { text },
-      });
-      setdiarys((diarys) => [...diarys, data.data]);
-    } catch (e) {
-      setError(e);
-    }
-  };
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const data = await axios({
-          url: "http://localhost:4000/diarys",
-          method: "GET",
-        });
-        setdiarys((diarys) => [...data.data]);
-        setIsLoading(false);
-      } catch (e) {
-        setError(e);
-      }
-    };
-    getData();
-  }, []);
-  if (error) {
-    console.log(error);
-    return <>에러: {error.message}</>;
-  }
-
-  if (isLoading) {
-    return <>Loading...</>;
-  }
 
   return (
-    <diaryTemplate>
-      <diaryInsert onInsert={onInsert} />
-      <diaryList
-        diarys={diarys}
-        onToggle={onToggle}
+    <TodoTemplate>
+      <TodoInsert onInsert={onInsert} />
+      <TodoList
+        articles={articles}
         onRemove={onRemove}
-        onChangeSelectedDiary={onChangeSelectedDiary}
+        onToggle={onToggle}
         onInsertToggle={onInsertToggle}
+        setSelectedArticle={setSelectedArticle}
       />
       {insertToggle && (
-        <diaryEdit selectedDiary={selectedDiary} onUpdate={onUpdate} />
+        <TodoEdit
+          onInsertToggle={onInsertToggle}
+          seletedTodo={seletedTodo}
+          onUpdate={onUpdate}
+        />
       )}
-    </diaryTemplate>
+    </TodoTemplate>
   );
 }
 
