@@ -1,0 +1,44 @@
+import React, { useState, useRef } from 'react'
+★ react 라이브러리 import하고 사용할 기능 부르기
+
+import TodoInsert from './components/TodoInsert'
+★ TodoInsert라는 component 부르기
+import TodoTemplate from './components/TodoTemplate'
+★ TodoTemplate라는 component 부르기
+
+function App() { ★ 직접 기능을 하는 부분
+  const [todos, setTodos] = useState([])
+  ★ todos라는 변수의 초기값을 빈 배열로 선언하고, 해당 값이 변할때 마다 그 부분을 렌더링(?)
+  const [selectedTodo, setSelectedTodo] = useState(null)
+  ★ selectedTodo라는 변수의 초기값을 null로 선언하고, 해당 값이 변할때 마다 그 부분을 렌더링(?)
+  const [insertToggle, setInsertToggle] = useState(false)
+  ★ insertToggle라는 변수의 초기값을 false로 선언하고, 해당 값이 변할때 마다 그 부분을 렌더링(?)
+
+  const nextId = useRef(1)
+  => 고유한 Id값을 부여하기 위한 기능?
+
+  const onInsert = text => { ★text 매개변수를 받아서 
+    const todo = { ★todo라는 객체의 요소중 text를 해당 인수로 치환한다.
+      id: nextId.current, ★자동부여(기본값)
+      text,
+      checked: false, ★자동부여(기본값)
+    }
+    setTodos(todos => todos.concat(todo)) ★todos를 todos에 todo를 추가하여 새로 만든 배열(원본 유지)로 치환한다.
+    nextId.current++ ★고유한 id를 부여하기 위해 차례로 증가시킨다.
+  }
+
+  return ( ★직접 보여지는 부분
+    <TodoTemplate> ★TodoTemplate 안에 TodoInsert를 부른다
+      <TodoInsert onInsert={onInsert} /> ★부르면서 onInsert라는 함수를 전달시킨다.
+      <button
+        onClick={() => {
+          console.log(todos)
+        }}
+      >
+        check
+      </button>
+    </TodoTemplate>
+  )
+}
+
+export default App
