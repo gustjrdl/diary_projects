@@ -1,13 +1,13 @@
 import "../styles/DiaryTemplate.scss";
 import DiaryBody from "./DiaryBody";
 import DiaryMenu from "./DiaryMenu";
+import DiaryButton from "./DiaryButton";
+import { children } from "react";
 
-function DiaryTemplate() {
+function DiaryTemplate(children) {
   return (
     <div className="DiaryTemplate">
-      <div>HOME</div>왜 안뿌려져~~~~~~~~~~~~~~~~~
       <DiaryBody></DiaryBody>
-      <DiaryMenu></DiaryMenu>
     </div>
   );
 }

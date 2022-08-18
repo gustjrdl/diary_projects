@@ -4,7 +4,7 @@ import DiaryListItem from "./DiaryListItem";
 function DiaryList() {
   return (
     <div className="DiaryList">
-      <div> 일기 리스트 창 </div>
+      <div> </div>
       <DiaryListItem></DiaryListItem>
     </div>
   );
