@@ -1,13 +1,13 @@
 import "../styles/DiaryMenu.scss";
+import "../styles/DiaryButton.scss";
 
 function DiaryMenu() {
   return (
-    <div className="DiaryMenu">
-      <button>일기 보기</button>
-      <br />
-      <button>일기 쓰기</button>
-      <button>일기 수정하기</button>
-      <button>일기 삭제하기</button>
+    <div className="DiaryButton">
+      <div className="mi-1">일기쓰기</div>
+      <div className="mi-2">읽기</div>
+      <div className="mi-3">수정하기</div>
+      <div className="mi-4">삭제하기</div>
     </div>
   );
 }

@@ -1,6 +1,35 @@
-.DiaryPageTitle {
-  width: 70%;
-  height: 10%;
-  display: block;
-  background-color: white;
+.mi-1,
+.mi-2,
+.mi-3,
+.mi-4 {
+  width: 70px;
+  height: 35px;
+  background-color: #127caf;
+  position: absolute;
+  text-align: center;
+  color: white;
+  vertical-align: center;
+  padding-top: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+  left: 650px;
+  font-size: 15px;
+}
+
+.mi-1 {
+  top: 60px;
+  z-index: 1;
+  background-color: antiquewhite;
+}
+.mi-2 {
+  top: 98px;
+  z-index: 1;
+}
+.mi-3 {
+  top: 136px;
+  z-index: 1;
+}
+.mi-4 {
+  top: 174px;
+  z-index: 1;
 }
