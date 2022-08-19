@@ -1,15 +1,45 @@
+import React, { useState } from "react";
 import "../styles/DiaryPage.scss";
-import DiaryPageTitle from "./DiaryPageTitle";
-import DiaryPageText from "./DiaryPageText";
 import DiaryButton from "./DiaryButton";
 
-function DiaryPage() {
+function DiaryPage({ onInsert }) {
+  const [title, setTitle] = useState("");
+  const [DiaryText, setDiaryText] = useState("");
+
+  const onChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    onInsert(title, DiaryText);
+    setTitle("");
+  };
+
   return (
     <div className="DiaryPage">
-      <div> 일기 페이지 창 </div>
-      <DiaryPageTitle></DiaryPageTitle>
-      <DiaryPageText></DiaryPageText>
-      <DiaryButton></DiaryButton>
+      <input
+        type="text"
+        className="DiaryTitle"
+        value={title}
+        onChange={onChange}
+      />
+      <button onClick={onInsert}>+</button>
+
+      <form className="DiaryMain">
+        <textarea
+          className="DiaryText"
+          // spellcheck="false"
+          name=""
+          id=""
+          // DiaryText={DiaryText}
+          // onChange={onChange}
+          // onSubmit={onSubmit}
+          cols="30"
+          rows="10"
+          placeholder="내용입력창"
+        ></textarea>
+      </form>
     </div>
   );
 }

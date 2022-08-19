@@ -1,12 +1,12 @@
 import "../styles/DiaryList.scss";
 import DiaryListItem from "./DiaryListItem";
 
-function DiaryList() {
+function DiaryList({ articles }) {
   return (
-    <div className="DiaryList">
-      <div> 일기 리스트 창 </div>
-      <DiaryListItem></DiaryListItem>
-    </div>
+    <ul className="DiaryList">
+      <div className="DiaryListLink"> 일기 리스트 창 </div>
+      {/*<DiaryListItem></DiaryListItem> */}
+    </ul>
   );
 }
 

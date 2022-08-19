@@ -1,8 +1,23 @@
 .DiaryPage {
-  width: 60%;
-  height: 380px;
-  float: right;
-  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  width:800px;
+  height: 100%;
   border-radius: 4px;
   background-color: cornflowerblue;
 }
+.DiaryText {
+  width: 700px;
+  height: 500px;
+}
+.DiaryMain {
+  display:flex;
+  
+}
+.DiaryTitle {
+  width:300px;
+  height: 100px;
+}
+

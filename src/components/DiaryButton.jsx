@@ -3,7 +3,7 @@ import "../styles/DiaryButton.scss";
 function DiaryButton() {
   return (
     <div className="DiaryButton">
-      <div>일기장 버튼</div>
+      <button className="DiaryClick">일기장 버튼</button>
     </div>
   );
 }
