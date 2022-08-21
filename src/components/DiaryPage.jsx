@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import "../styles/DiaryPage.scss";
-import DiaryButton from "./DiaryButton";
 
-function DiaryPage({ onInsert }) {
+function DiaryPage({ onInsert, acibal }) {
   const [title, setTitle] = useState("");
   const [DiaryText, setDiaryText] = useState("");
+
+  // const onInsert = (text) => {
+  //   const data = await axios({
+  //     url: "http://localhost:4000",
+  //     method: "POST",
+  //     data: { text },
+  //   });
+  //   console.log(text);
+  // };
+
+  acibal();
 
   const onChange = (e) => {
     setTitle(e.target.value);
@@ -12,21 +22,22 @@ function DiaryPage({ onInsert }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onInsert(title, DiaryText);
     setTitle("");
+    onInsert();
   };
 
   return (
-    <div className="DiaryPage">
+    <form onSubmit={onSubmit} className="DiaryPage">
       <input
         type="text"
         className="DiaryTitle"
         value={title}
         onChange={onChange}
+        placeholder="제목을 입력하세요"
       />
-      <button onClick={onInsert}>+</button>
+      <button>+</button>
 
-      <form className="DiaryMain">
+      {/* <form className="DiaryMain">
         <textarea
           className="DiaryText"
           // spellcheck="false"
@@ -39,8 +50,8 @@ function DiaryPage({ onInsert }) {
           rows="10"
           placeholder="내용입력창"
         ></textarea>
-      </form>
-    </div>
+      </form> */}
+    </form>
   );
 }
 

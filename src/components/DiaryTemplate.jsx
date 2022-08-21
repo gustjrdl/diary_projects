@@ -2,7 +2,7 @@ import "../styles/DiaryTemplate.scss";
 import DiaryBody from "./DiaryBody";
 import DiaryMenu from "./DiaryMenu";
 
-function DiaryTemplate({ children }) {
+function DiaryTemplate() {
   return (
     <div className="DiaryTemplate">
       <div className="DiaryDraw"></div>

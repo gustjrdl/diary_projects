@@ -12,73 +12,56 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const onInsert = async (title, text) => {
-    // try {
-    //   const data = await axios({
-    //     url: `http//localhost:4000/diary/insert`,
-    //     method: "POST",
-    //     params: { title, text },
-    //   });
-    //   setArticles(data.data);
-    // } catch (e) {
-    //   setError(e);
-    // }
+  const acibal = () => {
+    console.log("진짜 개씨발 존나 뭐라도 좀 나와라");
   };
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const data = await axios({
-          url: "http://localhost:4000",
-          method: "GET",
-        });
-
-        setArticles(data.data);
-        setIsLoading(false);
-        // throw new Error("조회중 에러발생!!");
-        // await new Promise((resolve, reject) => {
-        //   setTimeout(() => {
-        //     resolve()
-        //   }, 3000)
-        // })
-      } catch (e) {
-        setError(e);
-      }
-    };
-    console.log(setArticles);
-    getData();
-  }, []);
-
-  if (error) {
-    return <>에러: {error.message}</>;
-  }
-
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
-  const onChange = (e) => {
-    setArticle(e.target.value);
+  const onInsert = (text) => {
+    // const data = await axios({
+    //   url: "http://localhost:4000",
+    //   method: "POST",
+    //   data: { text },
+    // });
+    console.log("이렇게는 나오는가");
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (article === "") {
-      alert(" 한 글자 이상 입력해주세요. ");
-      return;
-    }
-    setArticles((currentArray) => []);
-  };
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const data = await axios({
+  //         url: "http://localhost:4000",
+  //         method: "GET",
+  //       });
+
+  //       setArticles(data.data);
+  //       setIsLoading(false);
+  //       // throw new Error("조회중 에러발생!!");
+  //       // await new Promise((resolve, reject) => {
+  //       //   setTimeout(() => {
+  //       //     resolve()
+  //       //   }, 3000)
+  //       // })
+  //     } catch (e) {
+  //       setError(e);
+  //     }
+  //   };
+  //   console.log(articles);
+  //   getData();
+  // }, []);
+
+  // if (error) {
+  //   return <>에러: {error.message}</>;
+  // }
+
+  // if (isLoading) {
+  //   return <>Loading...</>;
+  // }
 
   return (
     <DiaryTemplate>
-      <DiaryPage
-        article={article}
-        articles={articles}
-        setArticle={setArticle}
-        setArticles={setArticles}
-      ></DiaryPage>
-      <DiaryList>articles={articles}</DiaryList>
+      <DiaryBody onInsert={onInsert}></DiaryBody>
+      <DiaryPage acibal={acibal} />
+      <DiaryList></DiaryList>
     </DiaryTemplate>
   );
 }
