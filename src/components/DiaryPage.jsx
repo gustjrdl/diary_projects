@@ -1,20 +1,10 @@
 import React, { useState } from "react";
 import "../styles/DiaryPage.scss";
+import axios from "axios";
 
-function DiaryPage({ onInsert, acibal }) {
+function DiaryPage() {
   const [title, setTitle] = useState("");
   const [DiaryText, setDiaryText] = useState("");
-
-  // const onInsert = (text) => {
-  //   const data = await axios({
-  //     url: "http://localhost:4000",
-  //     method: "POST",
-  //     data: { text },
-  //   });
-  //   console.log(text);
-  // };
-
-  acibal();
 
   const onChange = (e) => {
     setTitle(e.target.value);
@@ -22,8 +12,8 @@ function DiaryPage({ onInsert, acibal }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // onInsert(title);
     setTitle("");
-    onInsert();
   };
 
   return (

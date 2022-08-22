@@ -1,3 +1,4 @@
+import React from "react";
 import "../styles/DiaryList.scss";
 import DiaryListItem from "./DiaryListItem";
 
