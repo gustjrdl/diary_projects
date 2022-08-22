@@ -3,7 +3,6 @@ import "../styles/DiaryTemplate.scss";
 import DiaryBody from "./DiaryBody";
 import DiaryPage from "./DiaryPage";
 import DiaryMenu from "./DiaryMenu";
-import axios from "axios";
 
 function DiaryTemplate({ onInsert }) {
   const [title, setTitle] = useState("");
