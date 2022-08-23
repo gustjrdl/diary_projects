@@ -44,27 +44,15 @@ function App() {
     return <>Loading...</>;
   }
 
-  const onInsert = async (text) => {
+  const onInsert = async (DiaryText) => {
     const data = await axios({
       url: "http://localhost:4000/diary/create",
       method: "POST",
-      data: { text },
+      data: { title: DiaryText.title, text: DiaryText.text },
     });
   };
-  // const onDiaryInsert = async (text) => {
-  //   const data = await axios({
-  //     url: "http://localhost:4000/diary/main",
-  //     method: "POST",
-  //     data: { text },
-  //   });
-  // };
 
-  return (
-    <DiaryTemplate onInsert={onInsert}>
-      <DiaryBody></DiaryBody>
-      <DiaryList></DiaryList>
-    </DiaryTemplate>
-  );
+  return <DiaryTemplate onInsert={onInsert}></DiaryTemplate>;
 }
 
 export default App;

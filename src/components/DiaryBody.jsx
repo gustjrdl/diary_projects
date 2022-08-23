@@ -4,11 +4,6 @@ import DiaryPage from "./DiaryPage";
 import DiaryList from "./DiaryList";
 
 function DiaryBody() {
-  return (
-    <div className="DiaryBody">
-      <DiaryList></DiaryList>
-      <DiaryPage></DiaryPage>
-    </div>
-  );
+  return <div className="DiaryBody"></div>;
 }
 export default DiaryBody;

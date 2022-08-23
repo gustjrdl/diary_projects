@@ -3,45 +3,60 @@ import "../styles/DiaryPage.scss";
 import axios from "axios";
 
 function DiaryPage() {
-  const [title, setTitle] = useState("");
-  const [DiaryText, setDiaryText] = useState("");
+  const [DiaryText, setDiaryText] = useState({ title: "", text: "" });
 
-  const onChange = (e) => {
-    setTitle(e.target.value);
+  const onInsert = async (title, text) => {
+    const data = await axios({
+      url: "http://localhost:4000/diary/create",
+      method: "POST",
+      data: { title, text },
+    });
   };
+
+  const DiaryChange = (e) => {
+    const { name, value } = e.target;
+    setDiaryText({ ...DiaryText, [name]: value });
+    console.log(DiaryText);
+  };
+
+  // const getValue = (e) => {
+  //   const { name, value } = e.target;
+  //   setValues({
+  //     ...values,
+  //     [name]: value,
+  //   });
+  //   console.log(values);
+  // };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // onInsert(title);
-    setTitle("");
+    onInsert(DiaryText.title, DiaryText.text);
+    setDiaryText("");
   };
 
   return (
-    <form onSubmit={onSubmit} className="DiaryPage">
-      <input
-        type="text"
-        className="DiaryTitle"
-        value={title}
-        onChange={onChange}
-        placeholder="제목을 입력하세요"
-      />
-      <button>+</button>
-
-      {/* <form className="DiaryMain">
+    <div>
+      <form className="DiaryPage">
+        <input
+          name="title"
+          type="text"
+          className="DiaryTitle"
+          onChange={DiaryChange}
+          placeholder="제목을 입력하세요"
+        />
         <textarea
+          spellCheck="true"
+          onChange={DiaryChange}
           className="DiaryText"
-          // spellcheck="false"
-          name=""
+          name="text"
           id=""
-          // DiaryText={DiaryText}
-          // onChange={onChange}
-          // onSubmit={onSubmit}
           cols="30"
           rows="10"
           placeholder="내용입력창"
         ></textarea>
-      </form> */}
-    </form>
+      </form>
+      <button onClick={onSubmit}>onSubmit</button>
+    </div>
   );
 }
 
