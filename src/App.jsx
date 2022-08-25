@@ -1,58 +1,66 @@
 import React, { useRef, useState, useEffect } from "react";
+import axios from "axios";
 import DiaryTemplate from "./components/DiaryTemplate";
 import DiaryBody from "./components/DiaryBody";
 import DiaryList from "./components/DiaryList";
-import DiaryPage from "./components/DiaryPage";
-import axios from "axios";
 
 function App() {
-  const [articles, setArticles] = useState([]);
-  const [article, setArticle] = useState("");
-  const [selectedArticle, setSelectedArticle] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [diaryArticles, setDiaryArticles] = useState([]);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const data = await axios({
-          url: "http://localhost:4000",
-          method: "GET",
-        });
+  // const onChange = (e) => {
+  //   setArticle(e.target.value);
+  // };
 
-        setArticles(data.data);
-        setIsLoading(false);
-        // throw new Error("조회중 에러발생!!");
-        // await new Promise((resolve, reject) => {
-        //   setTimeout(() => {
-        //     resolve()
-        //   }, 3000)
-        // })
-      } catch (e) {
-        setError(e);
-      }
-    };
-    console.log(articles);
-    getData();
-  }, []);
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (article === "") {
+  //     alert(" 한 글자 이상 입력해주세요. ");
+  //     return;
+  //   }
+  //   setArticles((currentArray) => []);
+  // };
 
-  if (error) {
-    return <>에러: {error.message}</>;
-  }
+  const diaryDelete = async (id) => {
+    const data = await axios({
+      url: `http://localhost:4000/diary/delete/${id}`,
+      method: "DELETE",
+    });
+    console.log(data.data);
+    setDiaryArticles(data.data);
+  };
 
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
-  const onInsert = async (DiaryText) => {
+  const onInsert = async (title, text) => {
     const data = await axios({
       url: "http://localhost:4000/diary/create",
       method: "POST",
-      data: { title: DiaryText.title, text: DiaryText.text },
+      data: { title, text },
     });
+    setDiaryArticles(data.data);
   };
 
-  return <DiaryTemplate onInsert={onInsert}></DiaryTemplate>;
+  useEffect(() => {
+    const getData = async () => {
+      const data = await axios({
+        url: "http://localhost:4000",
+        method: "GET",
+      });
+      console.log(data.data, "저는 유즈이펙트입니다");
+      setDiaryArticles(data.data);
+    };
+
+    getData();
+  }, []);
+
+  return (
+    <div>
+      {/* <DiaryTemplate></DiaryTemplate> */}
+      <DiaryBody
+        diaryArticles={diaryArticles}
+        diaryDelete={diaryDelete}
+        onInsert={onInsert}
+      ></DiaryBody>
+    </div>
+  );
 }
 
 export default App;

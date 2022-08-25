@@ -1,17 +1,38 @@
 .DiaryTemplate {
-  background-image: url(https://i.pinimg.com/564x/58/b3/9f/58b39f25255af7cee26eb4a7312bdce4.jpg);
-  background-size: 15px;
-  background-position: center;
-  width: 1280px;
-  height: 720px;
-  display: flex;
+  margin:0 auto;
+  width: 1600px;
+  height: 900px;
+  border: solid 3px blue;
+  display:flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
-  gap: 30px;
-  padding-top: 50px;
-  border: solid 3px red;
 }
-.DiaryText {
-  width: 700px;
-  height: 500px;
+.bookdot {
+  width: 1505px;
+  height: 775px;
+  // margin: 9px 2px;
+  border: 2px dashed blue;
+  border-radius: 15px;
+  position: absolute;
+  background-color:darkgrey;
 }
+
+.DiaryTemplateLeft {
+  background-color: darkgray;
+  width: 300px;
+  height: 800px;
+  border-radius: 15px;
+  border:solid black 3px;
+}
+
+.DiaryTemplateRight {
+  background-color: darkgray;
+  width: 1200px;
+  height: 800px;
+  // margin: -790px 305px;
+  // padding: 5px;
+  border-radius: 15px;
+  border:solid pink 3px;
+}
+
+

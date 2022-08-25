@@ -1,5 +1,11 @@
-// .DiaryListItem {
-//   width: 70%;
-//   height: 10%;
-//   background-color: blueviolet;
-// }
+.DiaryListItem {
+    border-radius: 15px;
+    border:solid red 2px;
+    margin:10px auto;    
+    
+}
+.DiaryListItem > a {
+    color:white;
+    text-decoration: none;
+}
+  

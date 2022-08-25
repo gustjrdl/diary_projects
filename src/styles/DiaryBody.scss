@@ -1,8 +1,81 @@
+.DiaryTemplate {
+  margin:0 auto;
+  width: 1600px;
+  height: 900px;
+  border: solid 3px blue;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.bookdot {
+  width: 1505px;
+  height: 775px;
+  // margin: 9px 2px;
+  border: 2px dashed blue;
+  border-radius: 15px;
+  position: absolute;
+  background-color:darkgrey;
+}
+
+
 .DiaryBody {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  width: 1100px;
-  height: 680px;
+
+}
+
+.DiaryBodyRight {
+  background-color: white;
+  // margin: -767px 310px;
+  width: 1190px;
+  height: 760px;
+  border-radius: 15px;
+  border:solid 3px gold;
+}
+
+.DiaryTitle {
+  font-size: 1.25rem;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  border-bottom: 1px solid #c5f6fa;
+  width: 80%;
+  padding-left: 10px;
+  border: 1px solid black;
+  margin-left: 69px;
+  margin-top: 15px;
+  background-color: rgba(255, 255, 255, 0);
+  
+}
+
+.onSubmitButton {
+  width: 80px;
+  height: 25px;
+  background: #22b8cf;
+  border-radius: 3px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid #22b8cf;
+  display: inline;
+  margin-left: 10px;
+  padding-top: 1px;
+}
+
+.DiaryText {
+  resize: none;
+  padding-top: 10px;
+  padding-left: 10px;
+  resize: none;
+  border: 1px solid black;
+  margin: 10px 65px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+input:focus,
+textarea:focus {
+  background-color: rgba(255, 255, 255, 255);
+  outline: none;
 }

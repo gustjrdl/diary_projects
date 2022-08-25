@@ -1,13 +1,18 @@
 import React from "react";
-import "../styles/DiaryList.scss";
 import DiaryListItem from "./DiaryListItem";
+import "../styles/DiaryList.scss";
 
-function DiaryList() {
+function DiaryList({ diaryArticles, onDiaryItemClick }) {
   return (
-    <ul className="DiaryList">
-      <div className="DiaryListLink"> 일기 리스트 창 </div>
-      {/*<DiaryListItem></DiaryListItem> */}
-    </ul>
+    <div className="DiaryList">
+      {diaryArticles.map((diaryArticle) => (
+        <DiaryListItem
+          diaryArticle={diaryArticle}
+          key={diaryArticle.id}
+          onClickHandler={onDiaryItemClick}
+        />
+      ))}
+    </div>
   );
 }
 
